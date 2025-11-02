@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boss直聘岗位爬虫分析系统</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔍 Boss直聘岗位爬虫分析系统</h1>
+            <p class="subtitle">输入岗位关键词，爬取并分析Boss直聘岗位数据</p>
+        </header>
+
+        <div class="search-section">
+            <div class="search-box">
+                <input 
+                    type="text" 
+                    id="keywordInput" 
+                    placeholder="输入岗位关键词，如：Python开发、数据分析、AI算法..."
+                    value="AI算法"
+                >
+                <input 
+                    type="number" 
+                    id="maxPages" 
+                    placeholder="最大页数" 
+                    value="5" 
+                    min="1" 
+                    max="20"
+                    class="pages-input"
+                >
+                <button id="crawlBtn" onclick="startCrawl()">开始爬取</button>
+            </div>
+        </div>
+
+        <div class="status-section" id="statusSection" style="display: none;">
+            <div class="status-message" id="statusMessage"></div>
+            <div class="progress-bar">
+                <div class="progress" id="progressBar"></div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showTab('statistics')">数据统计</button>
+                <button class="tab-btn" onclick="showTab('analysis')">详细分析</button>
+                <button class="tab-btn" onclick="showTab('wordcloud')">词云分析</button>
+                <button class="tab-btn" onclick="showTab('jobs')">岗位列表</button>
+            </div>
+
+            <div class="tab-content" id="statisticsTab">
+                <div class="stats-grid" id="statisticsContent">
+                    <div class="stat-card">
+                        <div class="stat-label">等待爬取数据</div>
+                        <div class="stat-value">-</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="analysisTab" style="display: none;">
+                <div id="analysisContent">
+                    <p>请先爬取数据</p>
+                </div>
+            </div>
+
+            <div class="tab-content" id="wordcloudTab" style="display: none;">
+                <div id="wordcloudContent">
+                    <p>正在生成词云...</p>
+                </div>
+            </div>
+
+            <div class="tab-content" id="jobsTab" style="display: none;">
+                <div id="jobsContent">
+                    <p>请先爬取数据</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+
